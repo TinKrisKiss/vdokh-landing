@@ -51,28 +51,28 @@
         html { scroll-behavior: smooth; }
     </style>
     <style>
-    /* Плавные переносы слов */
-    p, h1, h2, h3, .text-balance {
-        text-wrap: balance;
-        hyphens: auto;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-    }
-
-    /* Для заголовков — особенно важно */
-    h1, h2, h3 {
-        text-wrap: pretty;
-        max-width: 100%;
-    }
-
-    /* На мобильных: ограничиваем ширину строк для читаемости */
-    @media (max-width: 768px) {
-        p, li {
-            max-width: 65ch; /* Оптимальная длина строки ~65 символов */
-            margin-left: auto;
-            margin-right: auto;
+        /* Плавные переносы слов */
+        p, h1, h2, h3, .text-balance {
+            text-wrap: balance;
+            hyphens: auto;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
-    }
+
+        /* Для заголовков — особенно важно */
+        h1, h2, h3 {
+            text-wrap: pretty;
+            max-width: 100%;
+        }
+
+        /* На мобильных: ограничиваем ширину строк для читаемости */
+        @media (max-width: 768px) {
+            p, li {
+                max-width: 65ch; /* Оптимальная длина строки ~65 символов */
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
     </style>
     <meta name="description" content="Бьюти-пространство ВДОХ в Екатеринбурге. Маникюр, брови, эстетика тела. Запись онлайн.">
     <meta property="og:title" content="ВДОХ | Бьюти-пространство">
@@ -104,7 +104,6 @@ document.querySelector('a[href="javascript:void(0)"]').addEventListener('click',
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="#about" class="text-brand-blue hover:text-brand-coral transition-colors font-medium">О нас</a>
                 <a href="#services" class="text-brand-blue hover:text-brand-coral transition-colors font-medium">Услуги</a>
-                <a href="#portfolio" class="text-brand-blue hover:text-brand-coral transition-colors font-medium">Портфолио</a>
                 <a href="#contact" class="text-brand-blue hover:text-brand-coral transition-colors font-medium">Контакты</a>
             </nav>
 
