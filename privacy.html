@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика конфиденциальности | ВДОХ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { bg: '#99b3c2', coral: '#f97279', blue: '#2a72a3', light: '#c6d8e6', dark: '#1e1e1e' }
+                    },
+                    fontFamily: { sans: ['Manrope', 'sans-serif'], serif: ['Tenor Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass { background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.6); }
+    </style>
+</head>
+<body class="font-sans text-brand-dark bg-brand-bg min-h-screen py-16 px-6">
+    <div class="max-w-3xl mx-auto glass rounded-2xl p-8">
+        <a href="index.html" class="text-brand-blue hover:text-brand-coral mb-6 inline-block transition font-medium">← На главную</a>
+        <h1 class="font-serif text-3xl text-brand-blue mb-6">Политика конфиденциальности</h1>
+        <div class="space-y-4 text-brand-dark/80 font-light leading-relaxed">
+            <p><strong>Это демо-проект.</strong></p>
+            <p>В реальном коммерческом сайте на этой странице размещается текст Политики конфиденциальности в соответствии с требованиями Федерального закона № 152-ФЗ «О персональных данных».</p>
+            <p>Документ регулирует порядок сбора, обработки, хранения и защиты персональных данных пользователей, а также права субъектов персональных данных.</p>
+            <p class="text-sm text-brand-dark/50 mt-8">Для создания реального документа рекомендуется обратиться к юристу или использовать специализированные сервисы генерации.</p>
+        </div>
+    </div>
+</body>
+</html>

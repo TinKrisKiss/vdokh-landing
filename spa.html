@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Эстетика тела | ВДОХ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: { bg: '#99b3c2', bgLight: '#b0c3d2', coral: '#f97279', blue: '#2a72a3', light: '#c6d8e6', dark: '#1e1e1e' } },
+                    fontFamily: { sans: ['Manrope', 'sans-serif'], serif: ['Tenor Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass { background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.6); }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="font-sans text-brand-dark antialiased bg-brand-bg overflow-x-hidden">
+
+    <!-- HEADER -->
+    <header x-data="{ open: false }" class="fixed top-0 w-full z-40 glass transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="font-serif text-2xl tracking-[0.2em] text-brand-blue font-bold hover:text-brand-coral transition-colors">ВДОХ</a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html#about" class="text-brand-blue hover:text-brand-coral transition-colors font-medium">О нас</a>
+                <a href="index.html#services" class="text-brand-blue hover:text-brand-coral transition-colors font-medium">Услуги</a>
+                <a href="index.html#contact" class="text-brand-blue hover:text-brand-coral transition-colors font-medium">Контакты</a>
+            </nav>
+            <div class="hidden md:block"><a href="index.html#contact" class="bg-brand-coral text-white px-6 py-2 rounded-full font-medium hover:bg-red-500 transition-transform hover:-translate-y-0.5 shadow-lg shadow-brand-coral/30">Записаться</a></div>
+            <button @click="open = !open" class="md:hidden text-brand-blue focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        <div x-show="open" x-transition class="md:hidden glass absolute top-full left-0 w-full flex flex-col items-center py-6 space-y-4 shadow-xl">
+            <a href="index.html#about" @click="open = false" class="text-brand-blue font-medium">О нас</a>
+            <a href="index.html#services" @click="open = false" class="text-brand-blue font-medium">Услуги</a>
+            <a href="index.html#contact" @click="open = false" class="text-brand-blue font-medium">Контакты</a>
+        </div>
+    </header>
+
+    <!-- HERO УСЛУГИ -->
+    <section class="pt-32 pb-16 text-center px-4">
+        <h1 class="font-serif text-4xl md:text-6xl text-brand-blue mb-4">Эстетика тела</h1>
+        <p class="text-brand-dark/70 max-w-xl mx-auto font-light">Глубокое расслабление и уход за кожей. <br />Восстановите ресурс и подарите себе момент тишины.</p>
+    </section>
+
+    <!-- ПРАЙС -->
+    <section class="py-12 container mx-auto px-6 max-w-3xl">
+        <div class="glass rounded-2xl p-6 md:p-8 space-y-4">
+            <div class="flex justify-between items-center border-b border-white/30 pb-3">
+                <span class="font-medium text-brand-blue">Классический массаж (спина + шея)</span>
+                <span class="text-brand-coral font-medium">3 200 ₽</span>
+            </div>
+            <div class="flex justify-between items-center border-b border-white/30 pb-3">
+                <span class="font-medium text-brand-blue">Ароматерапевтический массаж</span>
+                <span class="text-brand-coral font-medium">3 000 ₽</span>
+            </div>
+            <div class="flex justify-between items-center border-b border-white/30 pb-3">
+                <span class="font-medium text-brand-blue">Уходовая процедура для лица</span>
+                <span class="text-brand-coral font-medium">2 500 ₽</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="font-medium text-brand-blue">Комплекс "Полный релакс" (Тело + Лицо)</span>
+                <span class="text-brand-coral font-medium">5 500 ₽</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- МАСТЕР УСЛУГИ -->
+    <section class="py-12 container mx-auto px-6 max-w-2xl">
+        <div class="glass rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+            <div class="w-24 h-24 flex-shrink-0 rounded-full overflow-hidden border-4 border-white/60 shadow-lg">
+                <img src="master-spa.jpg" alt="Алсу" class="w-full h-full object-cover">
+            </div>
+            <div>
+                <h3 class="font-serif text-2xl text-brand-blue mb-1">Алсу</h3>
+                <p class="text-brand-coral font-medium text-sm uppercase tracking-wider mb-3">Косметолог-эстетист</p>
+                <p class="text-brand-dark/70 font-light text-sm leading-relaxed mb-4">Опыт 7 лет. Мастер расслабляющих практик и ухода за телом. Помогает выдохнуть и перезагрузиться.</p>
+                <a href="index.html#contact" class="inline-block border border-brand-blue text-brand-blue px-5 py-2 rounded-full text-sm hover:bg-brand-blue hover:text-white transition-all">Записаться к мастеру</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОРТФОЛИО -->
+    <section class="py-16 container mx-auto px-6">
+        <h2 class="font-serif text-3xl text-brand-blue text-center mb-8">Наши работы</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <img src="spa-1.jpg" onclick="openLightbox(0)" class="rounded-xl cursor-pointer hover:opacity-90 transition object-cover h-48 md:h-64 w-full">
+            <img src="spa-2.jpg" onclick="openLightbox(1)" class="rounded-xl cursor-pointer hover:opacity-90 transition object-cover h-48 md:h-64 w-full">
+            <img src="spa-3.jpg" onclick="openLightbox(2)" class="rounded-xl cursor-pointer hover:opacity-90 transition object-cover h-48 md:h-64 w-full">
+            <img src="spa-4.jpg" onclick="openLightbox(3)" class="rounded-xl cursor-pointer hover:opacity-90 transition object-cover h-48 md:h-64 w-full">
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-12 text-center">
+        <a href="index.html#contact" class="inline-block bg-brand-coral text-white px-8 py-4 rounded-full font-medium hover:bg-red-500 transition shadow-lg">Записаться на процедуру</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-brand-light/60 py-8 border-t border-white/10 mt-8">
+        <div class="container mx-auto px-6 text-center text-sm">© 2025 ВДОХ. Дизайн и разработка: Анастасия Корсакова</div>
+    </footer>
+
+    <!-- ЛАЙТБОКС-СЛАЙДЕР -->
+    <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden flex items-center justify-center p-4 transition-opacity">
+        <button onclick="prevImage(event)" class="absolute left-2 md:left-8 text-white/60 hover:text-white text-5xl font-light transition z-50 select-none">&lt;</button>
+        <div class="relative max-w-full max-h-[90vh] flex flex-col items-center">
+            <img id="lightbox-img" src="" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl select-none transition-opacity duration-150">
+            <div id="lightbox-counter" class="mt-4 text-white/50 text-sm font-light tracking-wider select-none">1 / 4</div>
+        </div>
+        <button onclick="nextImage(event)" class="absolute right-2 md:right-8 text-white/60 hover:text-white text-5xl font-light transition z-50 select-none">&gt;</button>
+        <button onclick="closeLightbox(event)" class="absolute top-4 right-4 text-white/60 hover:text-white text-5xl font-light transition z-50 select-none">&times;</button>
+    </div>
+
+    <script>
+        // ⚠️ МАССИВ КАРТИНОК ДЛЯ SPA:
+        const galleryImages = [
+            'spa-1.jpg',
+            'spa-2.jpg',
+            'spa-3.jpg',
+            'spa-4.jpg'
+        ];
+        
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            updateLightbox();
+            document.getElementById('lightbox').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(e) {
+            if(e) e.stopPropagation();
+            document.getElementById('lightbox').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function nextImage(e) {
+            if(e) e.stopPropagation();
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            updateLightbox();
+        }
+
+        function prevImage(e) {
+            if(e) e.stopPropagation();
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateLightbox();
+        }
+
+        function updateLightbox() {
+            const imgEl = document.getElementById('lightbox-img');
+            const counterEl = document.getElementById('lightbox-counter');
+            imgEl.style.opacity = '0';
+            setTimeout(() => {
+                imgEl.src = galleryImages[currentIndex];
+                imgEl.style.opacity = '1';
+            }, 150);
+            counterEl.textContent = `${currentIndex + 1} / ${galleryImages.length}`;
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('lightbox').classList.contains('hidden')) return;
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('lightbox')) closeLightbox();
+        });
+    </script>
+</body>
+</html>

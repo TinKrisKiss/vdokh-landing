@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВДОХ | Бьюти-пространство</title>
+    
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN для быстрой разработки) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js (Для мобильного меню) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Настройка Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#99b3c2',
+                            bgLight: '#b0c3d2',
+                            coral: '#f97279',
+                            blue: '#2a72a3',
+                            light: '#c6d8e6',
+                            dark: '#1e1e1e'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Tenor Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Эффект стекла для Хедера и карточек */
+        .glass {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Плавная прокрутка */
+        html { scroll-behavior: smooth; }
+    </style>
+    <meta name="description" content="Бьюти-пространство ВДОХ в Екатеринбурге. Маникюр, брови, эстетика тела. Запись онлайн.">
+    <meta property="og:title" content="ВДОХ | Бьюти-пространство">
+    <meta property="og:description" content="Эстетика, забота и точность. Запишитесь на процедуру онлайн.">
+    <meta property="og:image" content="prevu-SM.jpg"> 
+    <meta property="og:url" content="https://vdokh-beauty.netlify.app">
+    <link rel="icon" type="image/png" href="favicon.png">
+    </head>
+<!-- Заглушка договора оферты </body> -->
+<script>
+document.querySelector('a[href="javascript:void(0)"]').addEventListener('click', (e) => {
+    e.preventDefault();
+    alert('📄 Это демо-проект. В реальном сайте здесь размещается текст публичной оферты и политика конфиденциальности.');
+});
+</script>
+<body class="font-sans text-brand-dark antialiased bg-brand-bg overflow-x-hidden">
+
+    <!-- HEADER (Навигация) -->
+    <!-- Sticky: прилипает к верху. Z-50: поверх всего. -->
+    <header x-data="{ open: false }" class="fixed top-0 w-full z-50 glass transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <!-- Логотип -->
+            <a href="#" class="font-serif text-2xl tracking-[0.2em] text-brand-blue font-bold hover:text-brand-coral transition-colors">
+                ВДОХ
+            </a>
+
+            <!-- Меню (Desktop) -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-brand-blue hover:text-brand-coral transition-colors font-medium">О нас</a>
+                <a href="#services" class="text-brand-blue hover:text-brand-coral transition-colors font-medium">Услуги</a>
+                <a href="#portfolio" class="text-brand-blue hover:text-brand-coral transition-colors font-medium">Портфолио</a>
+                <a href="#contact" class="text-brand-blue hover:text-brand-coral transition-colors font-medium">Контакты</a>
+            </nav>
+
+            <!-- Кнопка CTA (Desktop) -->
+            <div class="hidden md:block">
+                <a href="#contact" class="bg-brand-coral text-white px-6 py-2 rounded-full font-medium hover:bg-red-500 transition-transform hover:-translate-y-0.5 shadow-lg shadow-brand-coral/30">
+                    Записаться
+                </a>
+            </div>
+
+            <!-- Бургер-меню (Mobile) -->
+            <button @click="open = !open" class="md:hidden text-brand-blue focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Мобильное выпадающее меню -->
+        <div x-show="open" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-2"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             class="md:hidden glass absolute top-full left-0 w-full flex flex-col items-center py-6 space-y-4 shadow-xl">
+            <a href="#about" @click="open = false" class="text-brand-blue font-medium">О нас</a>
+            <a href="#services" @click="open = false" class="text-brand-blue font-medium">Услуги</a>
+            <a href="#portfolio" @click="open = false" class="text-brand-blue font-medium">Портфолио</a>
+            <a href="#contact" @click="open = false" class="text-brand-blue font-medium">Контакты</a>
+            <a href="#contact" class="bg-brand-coral text-white px-8 py-3 rounded-full font-medium">Записаться</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <!-- 1. Родитель должен быть relative -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    
+        <!-- ФОН С ЦВЕТКАМИ (z-0) -->
+        <div class="absolute inset-0 z-0">
+            <img src="hero-bg.png" alt="Background" class="w-full h-full object-cover opacity-70">
+        </div>
+
+        <!-- КОНТЕНТ (z-10, лежит поверх фона) -->
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            
+            <!-- Текст -->
+            <div class="space-y-8 text-center md:text-left">
+                <h1 class="font-serif text-6xl md:text-8xl text-brand-blue tracking-wide leading-tight">ВДОХ</h1>
+                <p class="text-xl md:text-2xl text-brand-blue/80 font-light max-w-lg mx-auto md:mx-0 leading-relaxed">
+                    Бьюти-пространство, где эстетика <br />встречается с заботой о тебе.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#contact" class="bg-brand-coral text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-red-500 transition-all hover:shadow-xl hover:shadow-brand-coral/40 transform hover:-translate-y-1">Записаться на визит</a>
+                    <a href="#services" class="border-2 border-brand-blue text-brand-blue px-8 py-4 rounded-full font-medium text-lg hover:bg-brand-blue hover:text-white transition-all">Смотреть услуги</a>
+                </div>
+            </div>
+
+            <!-- Картинка справа -->
+            <div class="relative group hidden md:block">
+                <div class="absolute inset-0 bg-white/30 backdrop-blur-md rounded-[2rem] rotate-3 group-hover:rotate-6 transition-transform duration-500 border border-white/50"></div>
+                <img src="hero-img.jpg" alt="Atmosphere" class="relative rounded-[2rem] shadow-2xl shadow-brand-blue/20 w-full h-[500px] object-cover z-10 group-hover:-translate-y-2 transition-transform duration-500">
+            </div>
+            
+        </div>
+    </section>
+    <!-- ========================================== -->
+    <!-- БЛОК: О НАС / ФИЛОСОФИЯ (#about)           -->
+    <!-- ========================================== -->
+    <!-- bg-brand-light (#c6d8e6) — мягкий фон в гамме сайта -->
+    <section id="about" class="py-24 bg-brand-light relative overflow-hidden">
+        
+        <!-- Декоративное пятно -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-brand-coral rounded-full mix-blend-multiply filter blur-3xl opacity-10 -z-10"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                
+                <!-- Текст -->
+                <div class="space-y-8">
+                    <h2 class="font-serif text-4xl md:text-5xl text-brand-blue leading-tight">
+                        Пространство <br />для перезагрузки
+                    </h2>
+                    <p class="text-lg text-brand-dark/80 leading-relaxed font-light">
+                        Мы верим, что красота начинается с тишины. <br />В студти &laquo;ВДОХ&raquo; нет суеты: только точные движения мастеров, <br />стерильные инструменты и внимание к каждой детали. <br />Здесь вы выдыхаете город и вдыхаете уверенность.
+                    </p>
+                    
+                    <!-- Карточка с цитатой: белое стекло, чтобы выделяться на светло-голубом фоне -->
+                    <div class="glass p-6 rounded-2xl border-l-4 border-brand-coral">
+                        <p class="font-serif text-xl text-brand-blue italic">
+                            «Эстетика — это не про идеальность. <br />Это про гармонию с собой.»
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Изображение -->
+                <div class="relative group">
+                    <!-- Подложка под фото: полупрозрачный белый, чтобы создать объем на новом фоне -->
+                    <div class="absolute inset-0 bg-white/60 rounded-3xl rotate-2 group-hover:rotate-4 transition-transform duration-500 shadow-xl"></div>
+                    <img src="about-philosophy.jpg" alt="Атмосфера салона ВДОХ" 
+                        class="relative rounded-3xl shadow-xl w-full h-[450px] object-cover z-10 group-hover:-translate-y-2 transition-transform duration-500">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+<!-- ========================================== -->
+<!-- БЛОК: УСЛУГИ (#services)                   -->
+<!-- ========================================== -->
+<section id="services" class="py-24 bg-white/40 backdrop-blur-sm">
+    <div class="container mx-auto px-6">
+        
+        <div class="text-center mb-16 space-y-4">
+            <h2 class="font-serif text-4xl md:text-5xl text-brand-blue">Наши услуги</h2>
+            <p class="text-brand-dark/70 max-w-2xl mx-auto font-light">
+                Каждая процедура — это маленькая пауза для себя.<br>Выберите то, что нужно именно вам сегодня.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            
+            <!-- Карточка 1: Ногтевой сервис -->
+            <a href="nails.html" class="glass rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 shadow-lg shadow-brand-blue/5 block">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="service-nails.jpg" alt="Ногтевой сервис" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="p-6 space-y-3">
+                    <h3 class="font-serif text-2xl text-brand-blue">Ногтевой сервис</h3>
+                    <p class="text-sm text-brand-dark/60 font-light leading-relaxed">
+                        Аппаратный маникюр, укрепление, покрытие гель-лаком. Идеальная архитектура и стойкость до 4 недель.
+                    </p>
+                    <div class="pt-2 flex items-center justify-between">
+                        <span class="text-brand-coral font-medium text-lg">от 2 500 ₽</span>
+                        <span class="text-xs text-brand-dark/40 uppercase tracking-wider">~ 1.5 часа</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Карточка 2: Брови и макияж -->
+            <a href="brows.html" class="glass rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 shadow-lg shadow-brand-blue/5 block">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="service-brows.jpg" alt="Архитектура бровей" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="p-6 space-y-3">
+                    <h3 class="font-serif text-2xl text-brand-blue">Брови и макияж</h3>
+                    <p class="text-sm text-brand-dark/60 font-light leading-relaxed">
+                        Коррекция, окрашивание, ламинирование бровей. Дневной или вечерний макияж, подчеркивающий вашу естественность.
+                    </p>
+                    <div class="pt-2 flex items-center justify-between">
+                        <span class="text-brand-coral font-medium text-lg">от 1 800 ₽</span>
+                        <span class="text-xs text-brand-dark/40 uppercase tracking-wider">~ 1 час</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Карточка 3: Эстетика тела -->
+            <a href="spa.html" class="glass rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 shadow-lg shadow-brand-blue/5 block">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="service-spa.jpg" alt="Эстетика тела" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="p-6 space-y-3">
+                    <h3 class="font-serif text-2xl text-brand-blue">Эстетика тела</h3>
+                    <p class="text-sm text-brand-dark/60 font-light leading-relaxed">
+                        Расслабляющие массажи, уходовые процедуры для кожи, детокс-обертывания. Глубокое восстановление и тонус.
+                    </p>
+                    <div class="pt-2 flex items-center justify-between">
+                        <span class="text-brand-coral font-medium text-lg">от 3 200 ₽</span>
+                        <span class="text-xs text-brand-dark/40 uppercase tracking-wider">~ 1.5 часа</span>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div> 
+</section>
+<!-- ========================================== -->
+<!-- БЛОК: КОНТАКТЫ И ЗАПИСЬ (#contact)         -->
+<!-- ========================================== -->
+<section id="contact" class="py-24 bg-brand-blue text-white relative overflow-hidden">
+    <!-- Декоративные пятна -->
+    <div class="absolute top-0 left-0 w-72 h-72 bg-brand-coral rounded-full mix-blend-overlay filter blur-3xl opacity-20"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-brand-bg rounded-full mix-blend-overlay filter blur-3xl opacity-10"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16 space-y-4">
+            <h2 class="font-serif text-4xl md:text-5xl">Сделай свой вдох</h2>
+            <p class="text-brand-light/80 max-w-2xl mx-auto font-light text-lg">
+                Оставьте заявку, и мы свяжемся с вами <br />в течение 15 минут, <br />чтобы подобрать удобное время.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+            
+            <!-- Форма записи -->
+            <div class="glass bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/20 shadow-2xl">
+                <form 
+                    action="https://formspree.io/f/maqkvrzk" 
+                    method="POST"
+                    class="space-y-5"
+                >
+                    <!-- Скрытое поле: куда редиректить после успешной отправки -->
+                    <input type="hidden" name="_next" value="https://yoursite.vercel.app/#thanks">
+                    
+                    <!-- Скрытое поле: тема письма в твоей почте -->
+                    <input type="hidden" name="_subject" value="Новая заявка с сайта ВДОХ">
+
+                    <!-- Имя -->
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-brand-light mb-2">Ваше имя</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            required 
+                            class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-brand-light/50 focus:outline-none focus:border-brand-coral focus:ring-1 focus:ring-brand-coral transition" 
+                            placeholder="Анастасия"
+                        >
+                    </div>
+
+                    <!-- Телефон -->
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-brand-light mb-2">Телефон</label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            required 
+                            pattern="[0-9+\-\s()]{10,}"
+                            class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-brand-light/50 focus:outline-none focus:border-brand-coral focus:ring-1 focus:ring-brand-coral transition" 
+                            placeholder="+7 (999) 000-00-00"
+                        >
+                    </div>
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-brand-light mb-2">Email (необязательно)</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-brand-light/50 focus:outline-none focus:border-brand-coral focus:ring-1 focus:ring-brand-coral transition" 
+                            placeholder="client@example.com"
+                        >
+                    </div>
+                    <!-- Услуга -->
+                    <div>
+                        <label for="service" class="block text-sm font-medium text-brand-light mb-2">Услуга</label>
+                        <select 
+                            id="service" 
+                            name="service" 
+                            required
+                            class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white focus:outline-none focus:border-brand-coral focus:ring-1 focus:ring-brand-coral transition appearance-none cursor-pointer"
+                        >
+                            <option value="" disabled selected class="text-brand-dark">Выберите услугу</option>
+                            <option value="nails" class="text-brand-dark">Ногтевой сервис</option>
+                            <option value="brows" class="text-brand-dark">Брови и макияж</option>
+                            <option value="spa" class="text-brand-dark">Эстетика тела</option>
+                            <option value="consultation" class="text-brand-dark">Консультация</option>
+                        </select>
+                    </div>
+
+                    <!-- Кнопка -->
+                    <button 
+                        type="submit" 
+                        class="w-full bg-brand-coral text-white font-medium py-4 rounded-xl hover:bg-red-500 transition-all hover:shadow-lg hover:shadow-brand-coral/40 transform hover:-translate-y-0.5"
+                    >
+                        Записаться на визит
+                    </button>
+                    
+                    <p class="text-xs text-brand-light/50 text-center mt-2">
+                        Нажимая кнопку, вы соглашаетесь на обработку персональных данных
+                    </p>
+                </form>
+            </div>
+
+            <!-- Контакты и карта -->
+            <div class="space-y-10">
+                <!-- Информация -->
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-coral/20 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-brand-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-xl mb-1">Адрес</h3>
+                            <p class="text-brand-light/80">Екатеринбург, ЦУ «Пассаж», Вайнера 9, 4 этаж, 444 офис</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-coral/20 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-brand-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-xl mb-1">Телефон</h3>
+                            <a href="tel:+79990000000" class="text-brand-light/80 hover:text-brand-coral transition">+7 (999) 000-00-00</a>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-coral/20 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-brand-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-xl mb-1">Часы работы</h3>
+                            <p class="text-brand-light/80">Ежедневно с 10 до 22</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Соцсети -->
+                <div class="flex space-x-4 pt-2">
+                    <a href="#" class="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-brand-coral hover:border-brand-coral transition-all group">
+                        <span class="text-brand-light group-hover:text-white font-bold text-sm">TG</span>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-brand-coral hover:border-brand-coral transition-all group">
+                        <span class="text-brand-light group-hover:text-white font-bold text-sm">VK</span>
+                    </a>
+                </div>
+
+                <!-- Карта Яндекс -->
+                    <div class="w-full h-64 rounded-2xl overflow-hidden border border-white/10 shadow-lg">
+                        <iframe 
+                            src="https://yandex.ru/map-widget/v1/?um=constructor%3A763525df37569b5456292ade32b347f6fac6c41032b29320559ff3817e3ce33f&amp;source=constructor" 
+                            width="100%" 
+                            height="100%" 
+                            frameborder="0" 
+                            allowfullscreen="true"
+                            class="grayscale hover:grayscale-0 transition duration-500"
+                            style="position: relative;">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================================== -->
+<!-- БЛОК: МАСТЕРА (#masters)                   -->
+<!-- ========================================== -->
+<section id="masters" class="relative pt-24 pb-36 bg-gradient-to-br from-brand-bg to-brand-bgLight overflow-hidden">
+    <!-- Декоративные пятна -->
+    <div class="absolute top-10 right-10 w-64 h-64 bg-brand-coral rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+    <div class="absolute bottom-10 left-10 w-64 h-64 bg-brand-blue rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        
+        <div class="text-center mb-16 space-y-4">
+            <h2 class="font-serif text-4xl md:text-5xl text-brand-blue">Наши мастера</h2>
+            <p class="text-brand-dark/70 max-w-2xl mx-auto font-light">
+                Профессионалы, которые любят своё дело и заботятся о вашем комфорте.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            
+            <!-- Мастер 1: Маникюр -->
+            <div class="glass rounded-2xl p-8 text-center group hover:-translate-y-2 transition-all duration-300 shadow-lg">
+                <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white/60 shadow-lg">
+                    <!-- Замени master-nails.jpg -->
+                    <img src="master-nails.jpg" alt="Мастер маникюра" class="w-full h-full object-cover">
+                </div>
+                <h3 class="font-serif text-2xl text-brand-blue mb-2">Алина</h3>
+                <p class="text-brand-coral font-medium text-sm uppercase tracking-wider mb-4">Топ-мастер маникюра</p>
+                <p class="text-brand-dark/70 font-light text-sm mb-6 leading-relaxed">
+                    Опыт 6 лет. Специалист по сложному дизайну и наращиванию. Создаёт настроение каждым штрихом.
+                </p>
+                <a href="#contact" class="inline-block border border-brand-blue text-brand-blue px-6 py-2 rounded-full text-sm hover:bg-brand-blue hover:text-white transition-all">
+                    Записаться к Алине
+                </a>
+            </div>
+
+            <!-- Мастер 2: Брови -->
+            <div class="glass rounded-2xl p-8 text-center group hover:-translate-y-2 transition-all duration-300 shadow-lg">
+                <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white/60 shadow-lg">
+                    <!-- Замени master-brows.jpg -->
+                    <img src="master-brows.jpg" alt="Бровист" class="w-full h-full object-cover">
+                </div>
+                <h3 class="font-serif text-2xl text-brand-blue mb-2">Мария</h3>
+                <p class="text-brand-coral font-medium text-sm uppercase tracking-wider mb-4">Архитектор взгляда</p>
+                <p class="text-brand-dark/70 font-light text-sm mb-6 leading-relaxed">
+                    Опыт 4 года. Находит идеальную форму для каждого лица. Естественность — её главное правило.
+                </p>
+                <a href="#contact" class="inline-block border border-brand-blue text-brand-blue px-6 py-2 rounded-full text-sm hover:bg-brand-blue hover:text-white transition-all">
+                    Записаться к Марии
+                </a>
+            </div>
+
+            <!-- Мастер 3: SPA -->
+            <div class="glass rounded-2xl p-8 text-center group hover:-translate-y-2 transition-all duration-300 shadow-lg">
+                <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white/60 shadow-lg">
+                    <!-- Замени master-spa.jpg -->
+                    <img src="master-spa.jpg" alt="Массажист" class="w-full h-full object-cover">
+                </div>
+                <h3 class="font-serif text-2xl text-brand-blue mb-2">Алсу</h3>
+                <p class="text-brand-coral font-medium text-sm uppercase tracking-wider mb-4">Косметолог-эстетист</p>
+                <p class="text-brand-dark/70 font-light text-sm mb-6 leading-relaxed">
+                    Опыт 7 лет. Мастер расслабляющих практик и ухода за телом. Помогает выдохнуть и перезагрузиться.
+                </p>
+                <a href="#contact" class="inline-block border border-brand-blue text-brand-blue px-6 py-2 rounded-full text-sm hover:bg-brand-blue hover:text-white transition-all">
+                    Записаться к Алсу
+                </a>
+            </div>
+
+        </div>
+    </div>
+        <!-- Декоративный цветок (НИЖНЯЯ ЧАСТЬ) -->
+        <!-- bottom-0 left-1/2: центрируем внизу. -translate-x-1/2: выравнивание по центру -->
+        <div class="absolute inset-0 w-full h-full z-0">
+            <img src="masters-bg.png" alt="Background" class="w-full h-full object-cover">
+        </div>
+</section>
+
+<!-- ========================================== -->
+<!-- FOOTER                                     -->
+<!-- ========================================== -->
+<footer class="bg-brand-dark text-brand-light/60 py-10 border-t border-white/10">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
+        <div class="flex items-center space-x-3">
+            <span class="font-serif text-xl text-white tracking-[0.15em]">ВДОХ</span>
+            <span class="opacity-60">© 2026. Все права защищены.</span>
+        </div>
+        <div class="flex space-x-6">
+            <a href="privacy.html" class="hover:text-brand-coral transition">Политика конфиденциальности</a>
+            <a href="offer.html" class="hover:text-brand-coral transition">Договор оферты</a>
+        </div>
+        <div class="opacity-60">
+            Дизайн и разработка: <span class="text-brand-coral">Кристина Мазур</span>
+        </div>
+    </div>
+</footer>
+<!-- AJAX-обработчик формы (исправленный, без _replyto) -->
+<script>
+document.querySelector('form').addEventListener('submit', async function(e) {
+    e.preventDefault(); // Останавливаем стандартную отправку
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.textContent;
+    
+    // Блокируем кнопку, меняем текст
+    btn.disabled = true;
+    btn.textContent = 'Отправка...';
+    
+    try {
+        // Отправляем данные через fetch
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        });
+        
+        if (response.ok) {
+            // Успех
+            alert('✨ Спасибо! Ваша заявка принята. Мы свяжемся с вами в течение 15 минут.');
+            form.reset(); // Очищаем форму
+        } else {
+            // Ошибка от сервера
+            const data = await response.json();
+            if (data.errors) {
+                alert('⚠️ Ошибка: ' + data.errors.map(e => e.message).join(', '));
+            } else {
+                alert('⚠️ Произошла ошибка. Попробуйте ещё раз.');
+            }
+        }
+    } catch (error) {
+        // Ошибка сети
+        console.error('Fetch error:', error);
+        alert('🔌 Ошибка соединения. Проверьте интернет и попробуйте снова.');
+    } finally {
+        // Возвращаем кнопку как была
+        btn.disabled = false;
+        btn.textContent = originalText;
+    }
+});
+</script>
+</script>
+</body>
+</html>
