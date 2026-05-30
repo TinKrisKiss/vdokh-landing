@@ -23,6 +23,28 @@
         .glass { background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.6); }
         html { scroll-behavior: smooth; }
     </style>
+    /* Плавные переносы слов */
+    p, h1, h2, h3, .text-balance {
+        text-wrap: balance;
+        hyphens: auto;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    /* Для заголовков — особенно важно */
+    h1, h2, h3 {
+        text-wrap: pretty;
+        max-width: 100%;
+    }
+
+    /* На мобильных: ограничиваем ширину строк для читаемости */
+    @media (max-width: 768px) {
+        p, li {
+            max-width: 65ch; /* Оптимальная длина строки ~65 символов */
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
 </head>
 <body class="font-sans text-brand-dark antialiased bg-brand-bg overflow-x-hidden">
 
@@ -50,28 +72,37 @@
     <!-- HERO УСЛУГИ -->
     <section class="pt-32 pb-16 text-center px-4">
         <h1 class="font-serif text-4xl md:text-6xl text-brand-blue mb-4">Эстетика тела</h1>
-        <p class="text-brand-dark/70 max-w-xl mx-auto font-light">Глубокое расслабление и уход за кожей. <br />Восстановите ресурс и подарите себе момент тишины.</p>
+        <p class="text-brand-dark/70 max-w-xl mx-auto font-light">Глубокое расслабление и уход за кожей. Восстановите ресурс и подарите себе момент тишины.</p>
     </section>
 
     <!-- ПРАЙС -->
     <section class="py-12 container mx-auto px-6 max-w-3xl">
         <div class="glass rounded-2xl p-6 md:p-8 space-y-4">
-            <div class="flex justify-between items-center border-b border-white/30 pb-3">
-                <span class="font-medium text-brand-blue">Классический массаж (спина + шея)</span>
-                <span class="text-brand-coral font-medium">3 200 ₽</span>
+            
+            <!-- Услуга 1 -->
+            <div class="flex items-end gap-3">
+                <span class="font-medium text-brand-blue flex-1 leading-snug border-b border-white/30 pb-3">Классический массаж (спина + шея)</span>
+                <span class="text-brand-coral font-medium whitespace-nowrap flex-shrink-0">3 200 ₽</span>
             </div>
-            <div class="flex justify-between items-center border-b border-white/30 pb-3">
-                <span class="font-medium text-brand-blue">Ароматерапевтический массаж</span>
-                <span class="text-brand-coral font-medium">3 000 ₽</span>
+            
+            <!-- Услуга 2 -->
+            <div class="flex items-end gap-3">
+                <span class="font-medium text-brand-blue flex-1 leading-snug border-b border-white/30 pb-3">Ароматерапевтический массаж</span>
+                <span class="text-brand-coral font-medium whitespace-nowrap flex-shrink-0">3 000 ₽</span>
             </div>
-            <div class="flex justify-between items-center border-b border-white/30 pb-3">
-                <span class="font-medium text-brand-blue">Уходовая процедура для лица</span>
-                <span class="text-brand-coral font-medium">2 500 ₽</span>
+            
+            <!-- Услуга 3 -->
+            <div class="flex items-end gap-3">
+                <span class="font-medium text-brand-blue flex-1 leading-snug border-b border-white/30 pb-3">Уходовая процедура для лица</span>
+                <span class="text-brand-coral font-medium whitespace-nowrap flex-shrink-0">2 500 ₽</span>
             </div>
-            <div class="flex justify-between items-center">
-                <span class="font-medium text-brand-blue">Комплекс "Полный релакс" (Тело + Лицо)</span>
-                <span class="text-brand-coral font-medium">5 500 ₽</span>
+            
+            <!-- Услуга 4 (без черты) -->
+            <div class="flex items-center gap-3">
+                <span class="font-medium text-brand-blue flex-1 leading-snug">Комплекс "Полный релакс" (Тело + Лицо)</span>
+                <span class="text-brand-coral font-medium whitespace-nowrap flex-shrink-0">5 500 ₽</span>
             </div>
+
         </div>
     </section>
 
@@ -108,7 +139,7 @@
 
     <!-- FOOTER -->
     <footer class="bg-brand-dark text-brand-light/60 py-8 border-t border-white/10 mt-8">
-        <div class="container mx-auto px-6 text-center text-sm">© 2025 ВДОХ. Дизайн и разработка: Анастасия Корсакова</div>
+        <div class="container mx-auto px-6 text-center text-sm">© 2026 ВДОХ. Дизайн и разработка: Кристина Мазур</div>
     </footer>
 
     <!-- ЛАЙТБОКС-СЛАЙДЕР -->

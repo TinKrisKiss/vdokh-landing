@@ -42,16 +42,37 @@
 
     <style>
         /* Эффект стекла для Хедера и карточек */
-        .glass {
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-        }
+        .glass { background: rgba(255, 255, 255, 0.85); 
+        backdrop-filter: blur(12px); 
+        -webkit-backdrop-filter: blur(12px); 
+        border: 1px solid rgba(255, 255, 255, 0.6); }
         
         /* Плавная прокрутка */
         html { scroll-behavior: smooth; }
     </style>
+    /* Плавные переносы слов */
+    p, h1, h2, h3, .text-balance {
+        text-wrap: balance;
+        hyphens: auto;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    /* Для заголовков — особенно важно */
+    h1, h2, h3 {
+        text-wrap: pretty;
+        max-width: 100%;
+    }
+
+    /* На мобильных: ограничиваем ширину строк для читаемости */
+    @media (max-width: 768px) {
+        p, li {
+            max-width: 65ch; /* Оптимальная длина строки ~65 символов */
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    
     <meta name="description" content="Бьюти-пространство ВДОХ в Екатеринбурге. Маникюр, брови, эстетика тела. Запись онлайн.">
     <meta property="og:title" content="ВДОХ | Бьюти-пространство">
     <meta property="og:description" content="Эстетика, забота и точность. Запишитесь на процедуру онлайн.">
@@ -129,7 +150,9 @@ document.querySelector('a[href="javascript:void(0)"]').addEventListener('click',
             
             <!-- Текст -->
             <div class="space-y-8 text-center md:text-left">
-                <h1 class="font-serif text-6xl md:text-8xl text-brand-blue tracking-wide leading-tight">ВДОХ</h1>
+                <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-brand-blue tracking-wide leading-tight max-w-full text-center md:text-left">
+                    ВДОХ
+                </h1>
                 <p class="text-xl md:text-2xl text-brand-blue/80 font-light max-w-lg mx-auto md:mx-0 leading-relaxed">
                     Бьюти-пространство, где эстетика встречается с заботой о тебе.
                 </p>
@@ -161,8 +184,8 @@ document.querySelector('a[href="javascript:void(0)"]').addEventListener('click',
                 
                 <!-- Текст -->
                 <div class="space-y-8">
-                    <h2 class="font-serif text-4xl md:text-5xl text-brand-blue leading-tight">
-                        Пространство <br />для перезагрузки
+                    <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-brand-blue leading-tight max-w-full">
+                        Пространство для перезагрузки
                     </h2>
                     <p class="text-lg text-brand-dark/80 leading-relaxed font-light">
                         Мы верим, что красота начинается с тишины. В студти &laquo;ВДОХ&raquo; нет суеты: только точные движения мастеров, стерильные инструменты и внимание к каждой детали. Здесь вы выдыхаете город и вдыхаете уверенность.
